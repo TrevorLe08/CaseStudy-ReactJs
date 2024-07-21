@@ -1,0 +1,25 @@
+@tailwind components;
+
+@layer components {
+    .table-admin {
+        @apply font-sans border-collapse min-w-full mt-[10px]
+    }
+    .table-admin-th {
+        @apply px-4 py-3 uppercase text-gray-500 border-b-[1px] border-b-[#dddddd]
+    }
+    .table-admin-td {
+        @apply px-4 py-2 whitespace-nowrap text-center text-base text-gray-700 border-b-[1px] border-b-[#dddddd]
+    }
+    .wrapper {
+        @apply flex justify-center
+    }
+    .form-admin {
+        @apply flex flex-col bg-white px-10 py-6 rounded-lg shadow-2xl w-[400px]
+    }
+    .form-select {
+        @apply h-8 text-lg border-gray-300 border-[1px] rounded outline-0
+    }
+    .card-dashboard {
+        @apply bg-white rounded-lg w-auto h-28 border-l-4 flex justify-between items-center px-4 shadow-xl
+    }
+}
