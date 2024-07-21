@@ -63,7 +63,6 @@ export default function Home() {
                     <i className="bi bi-people-fill text-3xl text-tertiary"></i>
                 </div>
             </div>
-            <p className='text-center font-bold text-2xl'>Page Admin</p>
         </div>
     )
 }
