@@ -39,7 +39,7 @@ export const Carousel = ({
             </div>
             <div className='absolute bottom-4 right-0  left-0'>
                 <div className='flex items-center justify-center gap-2'>
-                    {children.map((_, index) => (
+                    {children && children.map((_, index) => (
                         <div
                             className={`
                             transition-all w-3 h-3 bg-gray-500 rounded-full cursor-pointer
