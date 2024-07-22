@@ -8,6 +8,7 @@ import { MyContext } from '../../../../context/MyContext'
 import { CardStore } from '../../../../components/Card'
 import Header from '../../../../components/Header/user'
 import { useToast } from '../../../../context/ToastContext'
+import { ToastSuccess, ToastWarning } from '../../../../components/Toast'
 
 export default function UserProduct() {
     const navigate = useNavigate()
@@ -47,22 +48,20 @@ export default function UserProduct() {
 
     const handleAdd = (p, cart) => {
         if (!isLogged) {
-            alert("Đăng nhập để mua hàng")
+            toast.open(
+                <ToastWarning info={"Please log in to use service"}/>
+            )
             return;
         } else if (currentUser.isAdmin) {
-            alert("Admin không thể mua hàng!")
+            toast.open(
+                <ToastWarning info={"Admin cannot buy product"}/>
+            )
             return;
         }
         const newCart = handleAddProduct(p, cart)
         dispatch(updateCart(newCart)).then(() => {
             toast.open(
-                <div className='flex gap-2 bg-green-400 text-green-800 p-6 rounded-lg shadow-lg'>
-                    <i class="bi bi-check2-circle text-4xl"></i>
-                    <div>
-                        <h1 className='font-bold'>Thông báo</h1>
-                        <p className='text-sm'>Thêm sản phẩm thành công</p>
-                    </div>
-                </div>
+                <ToastSuccess info={'Adding successfully'}/>
             )
         })
     }
@@ -77,7 +76,7 @@ export default function UserProduct() {
 
     return (
         <div className='grid md:grid-cols-3 xl:grid-cols-4 m-3'>
-            <div className='sidebar-user'>
+            <div className='static md:fixed md:w-1/3 xl:w-1/4 bg-white md:col-span-1 h-full'>
                 {isLogged && !currentUser.isAdmin && <h3 className='text-lg font-bold'>Số lượng sản phẩm trong giỏ hàng: {yourCart.amount}</h3>}
                 <Header />
             </div>

@@ -6,6 +6,7 @@ import { readCategory, updateCategory } from '../../../../service/categoryServic
 import { ButtonOutline } from '../../../../components/Button'
 import { InputForm } from '../../../../components/Input'
 import { useToast } from '../../../../context/ToastContext'
+import { ToastSuccess } from '../../../../components/Toast'
 
 export default function EditCategory() {
     const { id } = useParams()
@@ -21,39 +22,31 @@ export default function EditCategory() {
     return (
         <div>
             <ButtonOutline
-                text={
-                    (<>
-                        <i className="bi bi-arrow-return-left mr-2"></i>
-                        <span>Back</span>
-                    </>)
-                }
-                color={"text-primary"}
+                textColor={"text-primary"}
                 border={"border-primary"}
-                hoverClass={"hover:bg-primary mx-2"}
+                hoverClass={"hover:bg-primary"}
+                className={"mx-2 py-2 px-3"}
                 onClick={() => navigate("/admin/categories")}
-            />
+            >
+                <i className="bi bi-arrow-return-left mr-2"></i>
+                <span>Back</span>
+            </ButtonOutline>
             <Formik
                 initialValues={currentCategory}
                 enableReinitialize={true}
                 onSubmit={(values) => {
                     dispatch(updateCategory(values)).then(() => {
                         toast.open(
-                            <div className='flex gap-2 bg-green-400 text-green-800 p-6 rounded-lg shadow-lg'>
-                                <i class="bi bi-check2-circle text-4xl"></i>
-                                <div>
-                                    <h1 className='font-bold'>Alert</h1>
-                                    <p className='text-sm'>Update successfully</p>
-                                </div>
-                            </div>
+                            <ToastSuccess info={"Upload successfully"} />
                         )
-                        setTimeout(() => {navigate("/admin/categories")},1000)
+                        setTimeout(() => { navigate("/admin/categories") }, 1000)
                     })
                 }}
             >
                 <div className='wrapper'>
                     <Form className='form-admin'>
                         <p className='text-2xl font-medium text-center'>Edit category id: {id}</p>
-                        <InputForm 
+                        <InputForm
                             label={"Name:"}
                             name={"name"}
                             type={"text"}
@@ -62,11 +55,13 @@ export default function EditCategory() {
                         />
                         <div className='flex justify-center'>
                             <ButtonOutline
-                                text="Add"
-                                color={"text-primary"}
+                                textColor={"text-primary"}
                                 border={"border-primary"}
-                                hoverClass={"hover:bg-primary mx-2 w-1/3 mt-2"}
-                            />
+                                hoverClass={"hover:bg-primary"}
+                                className={"mx-2 mt-2 w-1/4 px-2 py-2"}
+                            >
+                                Save
+                            </ButtonOutline>
                         </div>
                     </Form>
                 </div>

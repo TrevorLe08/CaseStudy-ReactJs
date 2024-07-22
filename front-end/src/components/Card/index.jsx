@@ -21,17 +21,20 @@ export const CardStore = ({ img,name,price,onAdd,onView }) => {
             <h2 className='text-xl font-bold'>{name}</h2>
             <h2 className='text-xl font-bold mb-2'>{price}.000 VNĐ</h2>
             <ButtonGradient
-                text={"Thêm"}
                 bgFrom={"from-blue-500"}
                 bgTo={"to-blue-700"}
                 onClick={onAdd}
-            />
+            >
+                Add
+            </ButtonGradient>
             <ButtonGradient
                 text={"Chi tiết"}
                 bgFrom={"from-green-400"}
                 bgTo={"to-green-500"}
                 onClick={onView}
-            />
+            >
+                View
+            </ButtonGradient>
         </div>
     )
 }

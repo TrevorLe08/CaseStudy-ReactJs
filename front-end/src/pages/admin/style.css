@@ -1,6 +1,6 @@
-@tailwind components;
+@tailwind utilities;
 
-@layer components {
+@layer utilities {
     .table-admin {
         @apply font-sans border-collapse min-w-full mt-[10px]
     }

@@ -1,6 +1,6 @@
-@tailwind components;
+@tailwind utilities;
 
-@layer components {
+@layer utilities {
     .sidebar-item {
         @apply p-2.5 mt-2 flex items-center text-white rounded-md px-4 duration-300
         cursor-pointer

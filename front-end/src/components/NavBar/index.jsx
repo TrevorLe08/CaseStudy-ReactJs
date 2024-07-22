@@ -6,6 +6,7 @@ import { logOut } from '../../redux/slices/usersSlice'
 import { ButtonNormal, ButtonOutline } from '../Button'
 import { Modal } from '../Modal'
 import { useToast } from '../../context/ToastContext'
+import { ToastSuccess } from '../Toast'
 
 export default function NavBar() {
     const dispatch = useDispatch()
@@ -57,36 +58,40 @@ export default function NavBar() {
                             <i className="bi bi-person-circle mr-2" />
                             <span className='mr-2'>{currentUser.name}</span>
                             <ButtonOutline
-                                text={"Đăng xuất"}
-                                font={"font-barlow"}
-                                color={"text-red-600"}
+                                textColor={"text-red-600"}
                                 border={"border-red-600"}
                                 hoverClass={"hover:bg-red-600"}
                                 onClick={() => setOpenModal(true)}
-                            />
+                                className={'font-barlow'}
+                            >
+                                Log out
+                            </ButtonOutline>
 
                             {currentUser.isAdmin ? (
                                 <div className='mx-2'>
                                     <ButtonOutline
-                                        text={"Back Page Admin"}
-                                        font={"font-barlow"}
+                                        className={"font-barlow"}
                                         onClick={() => navigate("/admin")}
-                                    />
+                                    >
+                                        Page Admin
+                                    </ButtonOutline>
                                 </div>
                             ) : ""}
                         </>
                     ) : (
                         <div className='space-x-2'>
                             <ButtonOutline
-                                text={"Đăng nhập"}
-                                font={"font-barlow"}
+                                className={"font-barlow"}
                                 onClick={() => navigate("/login")}
-                            />
+                            >
+                                Log in
+                            </ButtonOutline>
                             <ButtonOutline
-                                text={"Đăng ký"}
-                                font={"font-barlow"}
+                                className={"font-barlow"}
                                 onClick={() => navigate("/register")}
-                            />
+                            >
+                                Register
+                            </ButtonOutline>
                         </div>
                     )}
 
@@ -113,36 +118,32 @@ export default function NavBar() {
                         <i className="bi bi-box-arrow-left text-red-600 text-6xl mx-auto"></i>
                         <div className='mx-auto my-4 w-64'>
                             <p className='text-lg font-bold'>
-                                Xác nhận đăng xuất
+                                Confirm log out
                             </p>
                             <p className='text-sm text-gray-500 font-medium'>
-                                Bạn có chắc chắn sẽ đăng xuất?
+                                Are you sure want to log out?
                             </p>
                             <div className='flex justify-center gap-4 mx-auto w-full mt-2'>
                                 <ButtonNormal
-                                    text={"Đăng xuất"}
                                     bgColor={"bg-red-500"}
                                     hoverClass={"hover:bg-red-700"}
                                     onClick={() => {
                                         dispatch(logOut())
                                         toast.open(
-                                            <div className='flex gap-2 bg-green-400 text-green-800 p-6 rounded-lg shadow-lg'>
-                                                <i class="bi bi-check2-circle text-4xl"></i>
-                                                <div>
-                                                    <h1 className='font-bold'>Thông báo</h1>
-                                                    <p className='text-sm'>Đăng xuất thành công</p>
-                                                </div>
-                                            </div>
+                                            <ToastSuccess info={"Log out successfully"}/>
                                         )
                                         setOpenModal(false)
                                     }}
-                                />
+                                >
+                                    Log out
+                                </ButtonNormal>
                                 <ButtonNormal
-                                    text={"Hủy bỏ"}
                                     bgColor={"bg-gray-500"}
                                     hoverClass={"hover:bg-gray-700"}
                                     onClick={() => setOpenModal(false)}
-                                />
+                                >
+                                    Cancel
+                                </ButtonNormal>
                             </div>
                         </div>
                     </div>

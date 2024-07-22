@@ -12,7 +12,6 @@ module.exports = {
         primary: '#008cba',
         secondary: '#e8e8e8',
         tertiary: '#1174f5',
-        quaternary: '#fff',
       },
       zIndex: {
         'nav': '9999',

@@ -58,7 +58,6 @@ export default function SideBar() {
                         </p>
                         <div className='flex justify-center gap-4 mx-auto w-full mt-2'>
                             <ButtonNormal
-                                text={"Log out"}
                                 bgColor={"bg-red-500"}
                                 hoverClass={"hover:bg-red-700"}
                                 onClick={() => {
@@ -76,15 +75,17 @@ export default function SideBar() {
                                     setTimeout(() => {
                                         setOpenModal(false)
                                     }, 1000)
-
                                 }}
-                            />
+                            >
+                                Log out
+                            </ButtonNormal>
                             <ButtonNormal
-                                text={"Cancel"}
                                 bgColor={"bg-gray-500"}
                                 hoverClass={"hover:bg-gray-700"}
                                 onClick={() => setOpenModal(false)}
-                            />
+                            >
+                                Cancel
+                            </ButtonNormal>
                         </div>
                     </div>
                 </div>

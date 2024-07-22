@@ -61,9 +61,9 @@ export const handleChangeProduct = (product, listProduct, cart, action) => {
 
     // Quantity must be greater than 0 and less than product's quantity
     if (listPro[index].quantity === 1 && action === "decrease") {
-        return "Không thể bớt được";
+        return "Cannot decrease product";
     } else if ((listPro[index].quantity === currentProduct.quantity) && action === "increase") {
-        return "Không thể mua thêm";
+        return "Cannot increase product";
     }
 
     // Check action

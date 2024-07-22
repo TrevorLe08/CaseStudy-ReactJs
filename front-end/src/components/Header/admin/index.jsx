@@ -10,7 +10,6 @@ export default function Header() {
             <div className='p-2 w-96'>
                 <SearchBar
                     placeholder={"Search..."}
-                    onChange={() => {}}
                 />
             </div>
             <div className='pr-4 my-auto' >

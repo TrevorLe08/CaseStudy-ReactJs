@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react'
-import PropTypes from 'prop-types'
 
-const SearchBar = forwardRef((props, ref) => {
+const SearchBar = forwardRef(({placeholder,onChange}, ref) => {
     return (
         <div className="max-w-96 md:w-auto">
             <form className="w-full mx-auto" onSubmit={e => e.preventDefault()}>
@@ -13,19 +12,13 @@ const SearchBar = forwardRef((props, ref) => {
                         type="search"
                         className="block outline-none w-full md:w-full text-lg p-3 ps-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 placeholder:text-lg transition duration-200 focus:ring-2 focus:ring-tertiary"
                         ref={ref}
-                        placeholder={props.placeholder}
-                        onChange={props.onChange}
+                        placeholder={placeholder}
+                        onChange={onChange}
                     />
                 </div>
             </form>
         </div>
     )
 })
-
-
-SearchBar.propTypes = {
-    placeholder: PropTypes.string,
-    onChange: PropTypes.func,
-}
 
 export default SearchBar

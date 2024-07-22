@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../../service/productService';
 import { getCarts } from '../../../service/cartService';
 import '../style.css'
-import { ButtonNormal } from '../../../components/Button';
-import { useToast } from '../../../context/ToastContext';
 
 export default function Home() {
     const dispatch = useDispatch()

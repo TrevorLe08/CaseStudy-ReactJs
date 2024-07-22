@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { findSearch } from '../../../redux/slices/productsSlice'
 import { getCategory } from '../../../service/categoryService'
-import Switch from '../../Switch'
 import { MyContext } from '../../../context/MyContext'
+import Switch from '../../Switch'
 import SearchBar from '../../SearchBar'
 
 export default function Header() {
@@ -37,7 +37,7 @@ export default function Header() {
     }, [dispatch])
 
     return (
-        <div className='flex justify-between md:block '>
+        <div className='flex flex-col md:block '>
             <div className='mt-2 w-96 md:w-auto'>
                 <p className='text-xl font-bold mr-2 font-sans'>Tìm kiếm:</p>
                 <SearchBar
@@ -46,17 +46,19 @@ export default function Header() {
                     ref={inputRef}
                 />
             </div>
-            <div className='mb-4 mt-3 pl-10 pr-5 md:border-none md:px-0'>
+            <div className='mb-4 mt-3 pr-5'>
                 <span className='text-xl font-bold mr-2 font-sans'>Danh mục:</span>
-                {categories.map((item, index) => (
-                    <div key={index}>
+                <div className='grid grid-cols-3 gap-2 md:flex md:flex-col md:gap-1'>
+                    {categories.map((item, index) => (
                         <Switch
-                            label={item.name}
                             isOn={checkedState[index]}
                             onChange={() => handleChange(index)}
-                        />
-                    </div>
-                ))}
+                            key={index}
+                        >
+                            {item.name}
+                        </Switch>
+                    ))}
+                </div>
             </div>
         </div>
     )

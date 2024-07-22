@@ -12,13 +12,13 @@ export default function Home() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { products } = useSelector(state => state.product)
-    const {isLogged} = useSelector(state => state.user)
+    const { isLogged } = useSelector(state => state.user)
     const newProduct = products.find(p => p.name === "Samsung Z Fold 5")
 
     useEffect(() => {
         const getData = () => dispatch(getProduct())
         getData()
-    },[dispatch])
+    }, [dispatch])
     return (
         <div>
             <div className='xl:padding-l wide:padding-r'>
@@ -32,17 +32,13 @@ export default function Home() {
                         <p className='mt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis cupiditate, architecto esse maxime, illo assumenda reiciendis dolore, ut explicabo vitae unde pariatur tempora nihil id vel corrupti fugiat sunt rem?</p>
                         <div className='mt-2 '>
                             <ButtonOutline
-                                text={(
-                                    <div className='flex justify-center items-center'>
-                                        Show now
-                                        <i className="bi bi-arrow-right text-xl ml-2"></i>
-                                    </div>
-                                )}
-                                color={"text-tertiary"}
-                                border={"border-tertiary"}
-                                hoverClass={"hover:bg-tertiary"}
                                 onClick={() => navigate(`/store/detail/${newProduct.id}`)}
-                            />
+                            >
+                                <div className='flex justify-center items-center'>
+                                    <span>Show now</span>
+                                    <i className="bi bi-arrow-right text-xl ml-2"></i>
+                                </div>
+                            </ButtonOutline>
                         </div>
                     </div>
                     <div className='max-w-xl mx-auto flex justify-center items-center'>
@@ -75,12 +71,13 @@ export default function Home() {
                     <h1 className='text-white md:text-4xl text-3xl font-bold mb-4 font-barlow'>Discover Our New Products</h1>
                     <p className='text-white font-base text-center mb-8'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam distinctio, minus natus modi quia magnam dicta! Ipsum, illo. Nisi quia omnis magni molestiae molestias cumque vero vitae dolorum ducimus! Atque.</p>
                     <ButtonNormal
-                        text={"Get started"}
                         bgColor={"bg-white"}
                         hoverClass={"hover:bg-gray-100"}
                         textColor={"text-tertiary"}
                         onClick={() => isLogged ? navigate("/store") : navigate("/login")}
-                    />
+                    >
+                        <span>Get started</span>
+                    </ButtonNormal>
                 </div>
             </div>
             <div className='padding'>
@@ -110,18 +107,20 @@ export default function Home() {
                         <p className='mt-4 info-text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae in rem at nulla natus qui cumque. In exercitationem minima saepe, totam, libero hic illo nam optio labore perferendis a nobis.</p>
                         <div className='mt-9 flex flex-wrap gap-4'>
                             <ButtonNormal
-                                text={"Shop now"}
-                                bgColor={"bg-tertiary"}
-                                hoverClass={"hover:bg-blue-700"}
+                                hoverClass={"hover:bg-blue-600"}
                                 onClick={() => navigate("/store")}
-                            />
+                            >
+                                <span>Shop now</span>
+                            </ButtonNormal>
                             <ButtonNormal
-                                text={"Learn more"}
                                 bgColor={"bg-gray-100"}
-                                hoverClass={"hover:bg-gray-100"}
+                                hoverClass={"hover:bg-gray-300"}
                                 textColor={"text-tertiary"}
+                                className={"border-2 border-gray-200"}
                                 onClick={() => alert("There aren't any special sale:)")}
-                            />
+                            >
+                                <span>Learn more</span>
+                            </ButtonNormal>
                         </div>
                     </div>
                 </div>

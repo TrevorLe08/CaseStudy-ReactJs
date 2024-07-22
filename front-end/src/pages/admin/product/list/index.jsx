@@ -5,9 +5,10 @@ import { getProduct, deleteProduct } from '../../../../service/productService'
 import { getCategory } from '../../../../service/categoryService'
 import { findCategory } from '../../../../redux/slices/productsSlice'
 import { ButtonOutline } from '../../../../components/Button'
-import {popularList} from '../../../../utils/constant'
-import '../../style.css'
+import { popularList } from '../../../../utils/constant'
 import { useToast } from '../../../../context/ToastContext'
+import '../../style.css'
+import { ToastSuccess } from '../../../../components/Toast'
 
 export default function ListProduct() {
     const navigate = useNavigate()
@@ -24,13 +25,7 @@ export default function ListProduct() {
     const handleDelete = (id) => {
         dispatch(deleteProduct(id)).then(() => {
             toast.open(
-                <div className='flex gap-2 bg-green-400 text-green-800 p-6 rounded-lg shadow-lg'>
-                    <i class="bi bi-check2-circle text-4xl"></i>
-                    <div>
-                        <h1 className='font-bold'>Alert</h1>
-                        <p className='text-sm'>Delete successfully</p>
-                    </div>
-                </div>
+                <ToastSuccess info={"Delete successfully"}/>
             )
             window.location.reload()
         })
@@ -49,17 +44,14 @@ export default function ListProduct() {
                 <p className='text-blue-500 font-medium mb-2 ml-1 cursor-default'># List products</p>
                 <div className='my-2'>
                     <ButtonOutline
-                        text={(
-                            <>
-                                Add products
-                                <i className="bi bi-plus-square text-xl ml-2"></i>
-                            </>
-                        )}
-                        color={"text-primary"}
+                        textColor={"text-primary"}
                         border={"border-primary"}
                         hoverClass={"hover:bg-primary"}
                         onClick={() => navigate("/admin/products/add")}
-                    />
+                    >
+                        Add products
+                        <i className="bi bi-plus-square text-xl ml-2"></i>
+                    </ButtonOutline>
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="category" className='block outline-0 mb-2 text-base font-medium text-gray-900'>Category</label>
@@ -97,29 +89,40 @@ export default function ListProduct() {
                                     <td className='table-admin-td'>{product.name}</td>
                                     <td className='table-admin-td'>{product.price}k</td>
                                     <td className='table-admin-td'>{product.quantity}</td>
-                                    <td className='table-admin-td'><img className='mx-auto' src={product.images[0]} width='50px' alt='demo products' /></td>
+                                    <td className='table-admin-td'>
+                                        <img
+                                            className='mx-auto size-[50px]'
+                                            src={product.images[0]}
+                                            alt='Image products'
+                                        />
+                                    </td>
                                     <td className='table-admin-td space-x-2'>
                                         <ButtonOutline
-                                            text={<i className="bi bi-trash text-lg"></i>}
-                                            color={"text-red-600"}
+                                            textColor={"text-red-600"}
                                             border={"border-red-600"}
                                             hoverClass={"hover:bg-red-600"}
                                             onClick={() => handleDelete(product.id)}
-                                        />
+                                        >
+                                            <i className="bi bi-trash text-lg"></i>
+                                        </ButtonOutline>
+
                                         <ButtonOutline
-                                            text={<i className="bi bi-eye-fill"></i>}
-                                            color={"text-green-500"}
+                                            textColor={"text-green-500"}
                                             border={"border-green-500"}
                                             hoverClass={"hover:bg-green-500"}
                                             onClick={() => navigate(`/admin/products/detail/${product.id}`)}
-                                        />
+                                        >
+                                            <i className="bi bi-eye-fill"></i>
+                                        </ButtonOutline>
+
                                         <ButtonOutline
-                                            text={<i className="bi bi-pencil-fill"></i>}
-                                            color={"text-yellow-600"}
+                                            textColor={"text-yellow-600"}
                                             border={"border-yellow-600"}
                                             hoverClass={"hover:bg-yellow-600"}
                                             onClick={() => navigate(`/admin/products/edit/${product.id}`)}
-                                        />
+                                        >
+                                            <i className="bi bi-pencil-fill"></i>
+                                        </ButtonOutline>
                                     </td>
                                 </tr>
                             ))}
@@ -134,18 +137,10 @@ export default function ListProduct() {
             <div className='bg-white p-4 mt-[10px] rounded-md'>
                 <p className='text-red-500 font-medium mb-2 ml-1 cursor-default'># Popular products</p>
                 <div className='my-2'>
-                    <ButtonOutline
-                        text={(
-                            <>
-                                Edit list
-                                <i className="bi bi-pencil-fill text-xl ml-2"></i>
-                            </>
-                        )}
-                        color={"text-primary"}
-                        border={"border-primary"}
-                        hoverClass={"hover:bg-primary"}
-                        onClick={() => {}}
-                    />
+                    <ButtonOutline>
+                        Edit list
+                        <i className="bi bi-pencil-fill text-xl ml-2"></i>
+                    </ButtonOutline>
                 </div>
 
                 <table className='table-admin'>

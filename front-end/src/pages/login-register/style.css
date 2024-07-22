@@ -1,6 +1,6 @@
-@tailwind components;
+@tailwind utilities;
 
-@layer components {
+@layer utilities {
     .form-login {
         @apply max-w-[600px] bg-[rgba(0,0,0,0.8)] flex-grow py-[30px] px-[40px]
         shadow-login rounded-[10px]

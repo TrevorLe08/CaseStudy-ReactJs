@@ -7,6 +7,7 @@ import { handleAddProduct } from '../../../../utils/cartAction'
 import { ButtonGradient } from '../../../../components/Button'
 import { Carousel } from "../../../../components/Carousel";
 import { useToast } from '../../../../context/ToastContext'
+import { ToastSuccess, ToastWarning } from '../../../../components/Toast'
 
 export default function UserDetailProduct() {
     const { id } = useParams()
@@ -20,22 +21,20 @@ export default function UserDetailProduct() {
 
     const handleAdd = (p, cart) => {
         if (!isLogged) {
-            alert("Đăng nhập để mua hàng")
+            toast.open(
+                <ToastWarning info={"Please log in to use service"}/>
+            )
             return;
         } else if (currentUser.isAdmin) {
-            alert("Admin không thể mua hàng!")
+            toast.open(
+                <ToastWarning info={"Admin cannot buy product"}/>
+            )
             return;
         }
         const newCart = handleAddProduct(p, cart)
         dispatch(updateCart(newCart)).then(() => {
             toast.open(
-                <div className='flex gap-2 bg-green-400 text-green-800 p-6 rounded-lg shadow-lg'>
-                    <i class="bi bi-check2-circle text-4xl"></i>
-                    <div>
-                        <h1 className='font-bold'>Thông báo</h1>
-                        <p className='text-sm'>Thêm sản phẩm thành công</p>
-                    </div>
-                </div>
+                <ToastSuccess info={'Adding successfully'}/>
             )
         })
     }
@@ -52,9 +51,10 @@ export default function UserDetailProduct() {
         <div className='m-3'>
             <div className='mt-2'>
                 <ButtonGradient
-                    text={"Trở về"}
                     onClick={() => navigate("/store")}
-                />
+                >
+                    Back
+                </ButtonGradient>
             </div>
             <div className='lg:flex lg:justify-center mt-4'>
                 <div className='mb-4 lg:mb-0 lg:mr-14'>
@@ -72,9 +72,10 @@ export default function UserDetailProduct() {
                     <p className='text-base font-medium'>Mô tả:</p>
                     <p className='mb-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab sed fuga rem ex. Aut vel iste, labore eaque aperiam tempora aliquam vero quae odit? Praesentium est rem expedita maxime perspiciatis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus temporibus saepe a ipsa quibusdam dolor laborum explicabo deserunt fugit, eveniet, rerum quidem. Impedit voluptatum nulla doloremque voluptate obcaecati quia officia! Lorem ipsum dolor sit amet consectetur adipisicing elit. Error expedita nam explicabo. Ad, itaque voluptatum! Alias, corrupti id molestiae impedit neque reprehenderit assumenda tempore velit eveniet distinctio corporis temporibus asperiores.</p>
                     <ButtonGradient
-                        text={"Thêm vào giỏ hàng"}
                         onClick={() => handleAdd(currentProduct, yourCart)}
-                    />
+                    >
+                        Add to cart
+                    </ButtonGradient>
                 </div>
 
             </div>

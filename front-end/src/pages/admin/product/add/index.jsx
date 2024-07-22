@@ -10,6 +10,7 @@ import { imageStorage } from '../../../../firebase.config'
 import { ButtonOutline } from '../../../../components/Button'
 import { InputForm } from '../../../../components/Input'
 import { useToast } from '../../../../context/ToastContext'
+import { ToastSuccess } from '../../../../components/Toast'
 
 export default function AddProduct() {
     let navigate = useNavigate()
@@ -39,17 +40,15 @@ export default function AddProduct() {
     return (
         <div>
             <ButtonOutline
-                text={
-                    (<>
-                        <i className="bi bi-arrow-return-left mr-2"></i>
-                        <span>Back</span>
-                    </>)
-                }
-                color={"text-primary"}
+                textColor={"text-primary"}
                 border={"border-primary"}
-                hoverClass={"hover:bg-primary mx-2"}
+                hoverClass={"hover:bg-primary"}
+                className={"mx-2 px-3 py-2"}
                 onClick={() => navigate("/admin/products")}
-            />
+            >
+                <i className="bi bi-arrow-return-left mr-2"></i>
+                <span>Back</span>
+            </ButtonOutline>
             <Formik
                 initialValues={{
                     name: '',
@@ -79,13 +78,7 @@ export default function AddProduct() {
                             dispatch(createProduct(values)).then(() => {
                                 setStatus("Done ✔")
                                 toast.open(
-                                    <div className='flex gap-2 bg-green-400 text-green-800 p-6 rounded-lg shadow-lg'>
-                                        <i class="bi bi-check2-circle text-4xl"></i>
-                                        <div>
-                                            <h1 className='font-bold'>Alert</h1>
-                                            <p className='text-sm'>Adding successfully</p>
-                                        </div>
-                                    </div>
+                                    <ToastSuccess info={"Adding successfully"}/>
                                 )
                                 setTimeout(() => {
                                     navigate("/admin/products")
@@ -100,21 +93,21 @@ export default function AddProduct() {
                 <div className='wrapper'>
                     <Form className='form-admin'>
                         <p className='text-2xl font-medium text-center'>Add Product</p>
-                        <InputForm 
+                        <InputForm
                             label={"Name:"}
                             name={"name"}
                             type={"text"}
                             placeholder={"Enter name..."}
                             className="mr-7"
                         />
-                        <InputForm 
+                        <InputForm
                             label={"Price:"}
                             name={"price"}
                             type={"number"}
                             placeholder={"Enter price..."}
                             className="mr-9"
                         />
-                        <InputForm 
+                        <InputForm
                             label={"Quantity:"}
                             name={"quantity"}
                             type={"number"}
@@ -153,11 +146,13 @@ export default function AddProduct() {
                         </div>
                         <div className='flex justify-center'>
                             <ButtonOutline
-                                text="Add"
-                                color={"text-primary"}
+                                textColor={"text-primary"}
                                 border={"border-primary"}
-                                hoverClass={"hover:bg-primary mx-2 w-1/3"}
-                            />
+                                hoverClass={"hover:bg-primary"}
+                                className={"mx-2 w-1/4 px-3 py-2"}
+                            >
+                                Add
+                            </ButtonOutline>
                         </div>
                         <p className={`font-medium text-lg text-center mt-2 ${status === "Loading..." ? 'text-yellow-600' : (status === "Done ✔" ? 'text-green-500' : 'text-red-600')}`}>{status}</p>
                     </Form>

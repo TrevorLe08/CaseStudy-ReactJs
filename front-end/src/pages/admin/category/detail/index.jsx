@@ -25,17 +25,15 @@ export default function DetailCategory() {
     return (
         <div>
             <ButtonOutline
-                text={
-                    (<>
-                        <i className="bi bi-arrow-return-left mr-2"></i>
-                        <span>Back</span>
-                    </>)
-                }
-                color={"text-primary"}
+                textColor={"text-primary"}
                 border={"border-primary"}
-                hoverClass={"hover:bg-primary mx-2"}
+                hoverClass={"hover:bg-primary"}
+                className={"mx-2 py-2 px-3"}
                 onClick={() => navigate("/admin/categories")}
-            />
+            >
+                <i className="bi bi-arrow-return-left mr-2"></i>
+                <span>Back</span>
+            </ButtonOutline>
             <Formik
                 initialValues={currentCategory}
                 enableReinitialize={true}
@@ -43,14 +41,14 @@ export default function DetailCategory() {
                 <div className='wrapper'>
                     <Form className='form-admin'>
                         <p className='text-2xl font-medium text-center'>Detail category {id}</p>
-                        <InputForm 
+                        <InputForm
                             label={"ID:"}
                             name={"id"}
                             type={"number"}
                             className="mr-11"
                             disabled={true}
                         />
-                        <InputForm 
+                        <InputForm
                             label={"Name:"}
                             name={"name"}
                             type={"text"}
@@ -79,7 +77,7 @@ export default function DetailCategory() {
                                     </tbody>
                                 </table>
                             ) : (
-                                <p className='text-xl font-medium text-center'>Products is empty ._.</p>
+                                <p className='text-xl font-medium text-center mt-2'>Products is empty ._.</p>
                             )}
                         </div>
                     </Form>

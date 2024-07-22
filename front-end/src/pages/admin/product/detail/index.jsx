@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { readProduct } from '../../../../service/productService'
@@ -14,15 +14,6 @@ export default function DetailProduct() {
     const { id } = useParams()
     const { currentProduct } = useSelector(state => state.product)
     const { categories } = useSelector(state => state.category)
-    const [current, setCurrent] = useState(0)
-
-    const changeSlide = (action) => {
-        if (action === "previous") {
-            current === 0 ? setCurrent(currentProduct.images.length - 1) : setCurrent(current - 1)
-        } else {
-            current === currentProduct.images.length - 1 ? setCurrent(0) : setCurrent(current + 1)
-        }
-    }
 
     useEffect(() => {
         const getData = () => {
@@ -34,17 +25,15 @@ export default function DetailProduct() {
     return (
         <div>
             <ButtonOutline
-                text={
-                    (<>
-                        <i className="bi bi-arrow-return-left mr-2"></i>
-                        <span>Back</span>
-                    </>)
-                }
-                color={"text-primary"}
+                textColor={"text-primary"}
                 border={"border-primary"}
-                hoverClass={"hover:bg-primary mx-2"}
+                hoverClass={"hover:bg-primary"}
+                className={"mx-2 py-2 px-3 mb-2"}
                 onClick={() => navigate("/admin/products")}
-            />
+            >
+                <i className="bi bi-arrow-return-left mr-2"></i>
+                <span>Back</span>
+            </ButtonOutline>
             <Formik
                 initialValues={currentProduct}
                 enableReinitialize={true}
